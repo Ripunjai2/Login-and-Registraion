@@ -1,0 +1,24 @@
+{
+  "name": "login-and-registraion",
+  "version": "1.0.0",
+  "description": "Basic logic and registration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ripunjai2/Login-and-Registraion.git"
+  },
+  "author": "Ripunjai Rai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ripunjai2/Login-and-Registraion/issues"
+  },
+  "homepage": "https://github.com/Ripunjai2/Login-and-Registraion#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.5.1"
+  }
+}
