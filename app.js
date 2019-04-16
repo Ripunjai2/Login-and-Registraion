@@ -3,6 +3,7 @@ const app=express();
 const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const User=require('./models/User');
+const bcrypt=require('bcryptjs');
 
 
 app.use(bodyParser.json());
@@ -21,14 +22,28 @@ app.post('/register',(req,res)=>{
     newUser.email=req.body.email;
     newUser.password=req.body.password;
 
-    newUser.save().then(userSaved=>{
+    bcrypt.genSalt(10,(error,salt)=>{
 
-        res.send('UserSaved');
+        bcrypt.hash(newUser.password, salt,(err,hash)=>{
 
-    }).catch(err=>{
-        res.send('user cant be saved');
+            if(err){
+                return err;
+            }
+            newUser.password=hash;
 
+
+            newUser.save().then(userSaved=>{
+
+                res.send('UserSaved');
+        
+            }).catch(err=>{
+                res.send('user cant be saved'+err);
+        
+            })
+        })
     })
+
+  
 });
 
 app.listen(8888,()=>{
