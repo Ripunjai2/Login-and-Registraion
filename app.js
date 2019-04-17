@@ -46,6 +46,28 @@ app.post('/register',(req,res)=>{
   
 });
 
+
+app.post('/login',(req,res)=>{
+
+    User.findOne({email:req.body.email}).then(user=>{
+
+        if(user){
+            console.log('found email');
+            bcrypt.compare(req.body.password,user.password,(err,matched)=>{
+                if(err) return err;
+
+                if(matched){
+                    
+                    res.send('LOGIN SUCCESSFUL');
+                }else{
+                    res.send('LOGIN FAILED');
+                }
+                
+            })
+        }
+    })
+});
+
 app.listen(8888,()=>{
 
     console.log('listening on port no 8888');
